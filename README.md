@@ -14,7 +14,7 @@ memoria entregada por separado, cuyas cifras reproducen exactamente.
 ## Resultado principal
 
 El sistema de pricing dinámico incrementa el ARPU un **70,3 %** sobre el sistema
-estático de referencia (ARPU 64,8 → 110,2 $), bajo un error de estimación de la
+estático de referencia (ARPU 64,8 → 110,2 \$), bajo un error de estimación de la
 Comfort Zone del ±25 %, significativo en el 100 % de las 40 réplicas del test A/B.
 Análisis de sensibilidad: el uplift se mantiene entre **+57,7 %** (error ±40 %) y
 **+78,6 %** (estimación perfecta), siempre significativo.
@@ -31,7 +31,7 @@ confirma que emplear cz_final en el resultado principal es la opción conservado
 
 ### 01_generacion_datos/
 - `poker_generator_v2.py` — Generador del dataset sintético por 7 tiers de LTV.
-  Catálogo de 14 price points (0,99–299,99 $).
+  Catálogo de 14 price points (0,99–299,99 \$).
 - `regenerate_pipeline.py` — **Script maestro**. Reproduce el dataset completo de
   forma canónica: genera jugadores y transacciones, calcula la Comfort Zone
   (cz_raw y cz_final) y consolida los dos parquet finales. Determinista (SEED=42).
@@ -39,7 +39,7 @@ confirma que emplear cz_final en el resultado principal es la opción conservado
 
 ### 02_comfort_zone/
 - `comfort_zone.py` — Módulo de la Comfort Zone. Motor de cálculo (ventana de
-  30 días, umbral de ruido 2,99 $) y motor de decaimiento (7 tramos:
+  30 días, umbral de ruido 2,99 \$) y motor de decaimiento (7 tramos:
   100/90/70/50/30/10/0 % en cortes 14/30/45/60/90/180 días). Incluye autotest
   (`python comfort_zone.py` → "todos los tramos OK").
 - `validate_cz.py` — Validación de la CZ sobre el dataset real Online Retail II.
@@ -71,7 +71,7 @@ confirma que emplear cz_final en el resultado principal es la opción conservado
 - `abtest_robustez.py` — **Pruebas de robustez**. Reutiliza la lógica de `abtest_v4.py`
   por import (mismo modelo de elección y estratificación, 40 semillas) y regenera
   las dos cifras de robustez de la sección 4.6: (1) dinámico restringido al catálogo
-  común → **+32,4 %** (ARPU 64,8 → 85,7 $), y (2) check con cz_raw (sin decaimiento)
+  común → **+32,4 %** (ARPU 64,8 → 85,7 \$), y (2) check con cz_raw (sin decaimiento)
   → **+74,3 %**, que confirma que el uso de cz_final es conservador. Genera
   `05_datasets/abtest_robustez.csv`. Uso: `python abtest_robustez.py`
 
@@ -92,7 +92,7 @@ confirma que emplear cz_final en el resultado principal es la opción conservado
   estrategia (estático vs dinámico), con los 7 tiers de LTV. Generado por
   `04_pricing_simulacion/generar_csv_dashboard.py`. UNIDADES: dólares por jugador
   en el periodo simulado (30 días); la media de `expected_revenue` por estrategia
-  reproduce el ARPU canónico (64,82 / 110,22 $). El uplift como ratio de medias es
+  reproduce el ARPU canónico (64,82 / 110,22 \$). El uplift como ratio de medias es
   +70,1 %, frente al +70,3 % de la memoria (media de los uplifts por réplica):
   ambas son correctas y la diferencia es puramente de agregación.
 
@@ -106,9 +106,9 @@ Python X.Y.Z]`), impresa por los propios scripts, como rastro de ejecución.
 - `log_model_comparison.txt` — AUC 0,913 (XGBoost) vs 0,885 (Random Forest).
 - `log_kmeans_exploratorio.txt` — Codo y Silhouette (k=2, S=0,772).
 - `log_generar_csv_dashboard.txt` — Regeneración de los CSVs del dashboard
-  (verificación: media 64,82 / 110,22 $ por estrategia).
+  (verificación: media 64,82 / 110,22 \$ por estrategia).
 - `log_comfort_zone.txt`, `log_validate_cz.txt` — Autotest y validación de la CZ
-  (7 tramos de decaimiento, filtro de ruido 2,99 $).
+  (7 tramos de decaimiento, filtro de ruido 2,99 \$).
 
 ### 07_notebooks/
 Entorno Jupyter de reproducción. Cada notebook ejecuta el script canónico del
@@ -159,11 +159,11 @@ pueden variar ligeramente (±0,01) con otras versiones de scikit-learn/xgboost.
 ## Notas de coherencia
 
 - **Catálogo unificado**: generación, simulación y memoria usan el mismo catálogo
-  de 14 puntos (0,99–299,99 $).
+  de 14 puntos (0,99–299,99 \$).
 - **Disposición de pago**: en la simulación se aproxima con la Comfort Zone (con su
   decaimiento aplicado). Es una elección conservadora: sin decaimiento (cz_raw), el
   uplift ascendería a +74,3 % frente al +70,3 % de referencia (ver `abtest_robustez.py`).
-  Documentado en la sección 4.2.7 de la memoria.
-- **Dos definiciones de ARPU**: el ARPU histórico del dataset (48,07 $) describe los
-  datos de partida; el ARPU simulado (64,8 / 110,2 $) cuantifica el resultado del
+  Documentado en la sección 4.2.8 de la memoria.
+- **Dos definiciones de ARPU**: el ARPU histórico del dataset (48,07 \$) describe los
+  datos de partida; el ARPU simulado (64,8 / 110,2 \$) cuantifica el resultado del
   experimento A/B. Son magnitudes distintas, no contradictorias.
