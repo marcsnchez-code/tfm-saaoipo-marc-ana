@@ -1,0 +1,20 @@
+[Ejecutado 2026-07-02 17:55:44 | vm | Python 3.12.3]
+
+Dataset: 71,429 jugadores | tasa de conversión: 28.0%
+Variables predictoras: ['age', 'sessions_per_week', 'avg_session_min', 'engagement_num']
+
+=== COMPARACIÓN DE MODELOS (conjunto de test) ===
+       Modelo    AUC  Precision  Recall     F1
+Random Forest 0.8851     0.7428  0.6520 0.6944
+      XGBoost 0.9132     0.6731  0.7942 0.7286
+
+=== AUC EN VALIDACIÓN CRUZADA (5 folds) ===
+  Random Forest: 0.8832 ± 0.0026
+  XGBoost:       0.9109 ± 0.0028
+
+=== IMPORTANCIA DE VARIABLES ===
+         variable  Random Forest  XGBoost
+              age          0.176    0.033
+sessions_per_week          0.398    0.237
+  avg_session_min          0.291    0.166
+   engagement_num          0.134    0.564

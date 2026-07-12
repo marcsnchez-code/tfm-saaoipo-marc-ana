@@ -1,0 +1,13 @@
+[Ejecutado 2026-07-02 17:55:15 | vm | Python 3.12.3]
+
+A/B test — Pruebas de robustez | 71,429 jugadores | 40 semillas
+
+[1] Dinámico RESTRINGIDO al catálogo común (igualdad total de precios)
+    ARPU 64.82 -> 85.68 $ | uplift 32.4% | IC95% [30.2,34.6] | sig 100%
+    (memoria 4.6: ARPU ~85,7 $, +32,4 %)
+
+[2] Check con cz_raw (sin decaimiento) — confirma que cz_final es conservador
+    ARPU 156.43 -> 272.44 $ | uplift 74.3% | IC95% [72.4,76.2] | sig 100%
+    (referencia: +74,3 % reproducible, frente al +70,3 % con cz_final)
+
+Guardado: abtest_robustez.csv

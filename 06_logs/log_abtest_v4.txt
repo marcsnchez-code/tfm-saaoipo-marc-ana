@@ -1,0 +1,11 @@
+[Ejecutado 2026-07-02 17:55:15 | vm | Python 3.12.3]
+
+A/B test v4 | DPR real vs CZ estimada con ruido | 71,429 jugadores
+
+   Ruido  ARPU base   ARPU dyn   Uplift           IC95%  % sig
+sin ruido      64.82     115.62    78.6%     [75.8,81.5]   100%
+    ±15%      64.82     113.72    75.7%     [72.9,78.5]   100%
+    ±25%      64.82     110.22    70.3%     [67.6,73.0]   100%
+    ±40%      64.82     102.05    57.7%     [55.1,60.2]   100%
+
+Guardado: abtest_v4_sensibilidad_ruido.csv

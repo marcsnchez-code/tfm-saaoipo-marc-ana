@@ -1,0 +1,29 @@
+[Ejecutado 2026-07-06 17:04:12 | vm | Python 3.12.3]
+
+Análisis exploratorio de segmentación con K-Means (contraste, no pilar)
+
+Jugadores pagadores analizados: 20,000
+Variables RFM: ['monetary', 'frequency', 'recency_days']
+
+=== Exploración del número de clusters ===
+  k=2 | inertia=        36,708 | silhouette=0.772
+  k=3 | inertia=        21,734 | silhouette=0.423
+  k=4 | inertia=        16,029 | silhouette=0.434
+  k=5 | inertia=        11,836 | silhouette=0.379
+  k=6 | inertia=         9,514 | silhouette=0.350
+  k=7 | inertia=         8,092 | silhouette=0.346
+  k=8 | inertia=         7,104 | silhouette=0.327
+
+Gráfico guardado en: 06_graficos/fig_kmeans_codo_silhouette.png
+
+k con mayor Silhouette en el rango explorado: 2
+
+=== Contraste cluster x tier (k=2) ===
+archetype  Megalodons  Mobys  Tier1  Tier2  Tier3  Whales
+cluster                                                  
+0                 116      0      0      0      0     393
+1                   0   1689   8513   5508   3596     185
+
+Lectura: cada cluster queda dominado por uno o pocos tiers contiguos de LTV, lo que confirma que la dimensión de valor estructura la población y respalda la segmentación por tiers explícitos adoptada por el sistema.
+
+Conclusión: el análisis no supervisado es coherente con la partición por tiers de LTV. K-Means cumple aquí una función de validación exploratoria, no de segmentación operativa.

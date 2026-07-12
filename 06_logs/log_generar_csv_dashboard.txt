@@ -1,0 +1,20 @@
+[Ejecutado 2026-07-06 17:09:48 | vm | Python 3.12.3]
+
+Generador de CSVs de dashboard | 71,429 jugadores | 40 semillas | ruido ±25%
+
+ARPU por tier (±25 %, media de 40 réplicas):
+      tier  arpu_base  arpu_dyn  uplift
+NonSpender       4.00      2.38   -40.5
+     Tier1       3.98      3.11   -21.9
+     Tier2      13.65     16.34    19.8
+     Tier3      95.00    226.15   138.0
+     Mobys     427.99   1008.03   135.5
+    Whales    4271.88   6652.59    55.7
+Megalodons    6734.36  10981.96    63.1
+
+Guardado: 05_datasets/resultado_por_tier_v4.csv
+
+Guardado: 05_datasets/pbi_strategy_long_v2.csv
+Verificación de coherencia (media de expected_revenue por estrategia):
+  Estático: 64.82 $ | Dinámico: 110.22 $ | uplift 70.1%
+  (referencia canónica del A/B: 64,8 -> 110,2 $, +70,3 %)

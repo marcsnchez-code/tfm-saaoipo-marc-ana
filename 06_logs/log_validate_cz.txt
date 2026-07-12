@@ -1,0 +1,95 @@
+[Ejecutado 2026-07-02 17:55:39 | vm | Python 3.12.3]
+
+======================================================================
+TRANSACCIONES DE PRUEBA (estructura Online Retail II canónica)
+======================================================================
+    user_id  timestamp  amount
+U1_reciente 2026-05-23    20.0
+U1_reciente 2026-05-16    30.0
+ U1b_20dias 2026-05-08   100.0
+  U2_45dias 2026-04-13    40.0
+  U2_45dias 2026-04-08    60.0
+ U2b_50dias 2026-04-08    80.0
+  U3_80dias 2026-03-09   100.0
+ U4_150dias 2025-12-29   150.0
+ U4_150dias 2025-12-09   250.0
+ U5_300dias 2025-08-01   500.0
+ U6_400dias 2025-04-23    80.0
+   U7_ruido 2026-05-18    10.0
+   U7_ruido 2026-05-18     2.0
+   U7_ruido 2026-05-18     1.5
+
+Fecha de referencia: 2026-05-28  |  Total transacciones: 14
+
+======================================================================
+FUNCIÓN DE DECAIMIENTO (escalonada)
+======================================================================
+     0–14   días sin compra  ->  peso 100 %
+    15–30   días sin compra  ->  peso  90 %
+    31–45   días sin compra  ->  peso  70 %
+    46–60   días sin compra  ->  peso  50 %
+    61–90   días sin compra  ->  peso  30 %
+    91–180  días sin compra  ->  peso  10 %
+   181–∞    días sin compra  ->  peso   0 %
+
+======================================================================
+COMFORT ZONE  ·  filtro de ruido ACTIVADO (apply_noise_filter=True)
+======================================================================
+    user_id last_purchase  recency_days  cz_window  cz_raw  deterioration_weight  cz_final  n_valid_tx
+ U1b_20dias    2026-05-08            20         30   100.0                   0.9      90.0           1
+ U2b_50dias    2026-04-08            50         60    80.0                   0.5      40.0           1
+  U2_45dias    2026-04-13            45         60    50.0                   0.7      35.0           2
+  U3_80dias    2026-03-09            80         90   100.0                   0.3      30.0           1
+U1_reciente    2026-05-23             5         30    25.0                   1.0      25.0           2
+ U4_150dias    2025-12-29           150        180   200.0                   0.1      20.0           2
+   U7_ruido    2026-05-18            10         30    10.0                   1.0      10.0           1
+ U5_300dias    2025-08-01           300        365   500.0                   0.0       0.0           1
+ U6_400dias    2025-04-23           400         -1     NaN                   0.0       NaN           1
+
+======================================================================
+COMFORT ZONE  ·  filtro de ruido DESACTIVADO (apply_noise_filter=False)
+======================================================================
+    user_id last_purchase  recency_days  cz_window  cz_raw  deterioration_weight  cz_final  n_valid_tx
+ U1b_20dias    2026-05-08            20         30   100.0                   0.9      90.0           1
+ U2b_50dias    2026-04-08            50         60    80.0                   0.5      40.0           1
+  U2_45dias    2026-04-13            45         60    50.0                   0.7      35.0           2
+  U3_80dias    2026-03-09            80         90   100.0                   0.3      30.0           1
+U1_reciente    2026-05-23             5         30    25.0                   1.0      25.0           2
+ U4_150dias    2025-12-29           150        180   200.0                   0.1      20.0           2
+   U7_ruido    2026-05-18            10         30     4.5                   1.0       4.5           3
+ U5_300dias    2025-08-01           300        365   500.0                   0.0       0.0           1
+ U6_400dias    2025-04-23           400         -1     NaN                   0.0       NaN           1
+
+======================================================================
+EFECTO DEL FILTRO sobre U7_ruido (CZ bruta)
+======================================================================
+  Con filtro  : CZ bruta = 10.0  (solo cuenta la compra de 10.0)
+  Sin filtro  : CZ bruta = 4.5  (incluye ruido 2.0 y 1.5)
+
+======================================================================
+VERIFICACIÓN AUTOMÁTICA DE PESOS ESPERADOS
+======================================================================
+  U1_reciente    peso esperado  1.0  obtenido  1.0  [OK]
+  U1b_20dias     peso esperado  0.9  obtenido  0.9  [OK]
+  U2_45dias      peso esperado  0.7  obtenido  0.7  [OK]
+  U2b_50dias     peso esperado  0.5  obtenido  0.5  [OK]
+  U3_80dias      peso esperado  0.3  obtenido  0.3  [OK]
+  U4_150dias     peso esperado  0.1  obtenido  0.1  [OK]
+  U5_300dias     peso esperado  0.0  obtenido  0.0  [OK]
+  U6_400dias     peso esperado  0.0  obtenido  0.0  [OK]
+
+======================================================================
+VERIFICACIÓN AUTOMÁTICA DE CZ FINAL ESPERADA
+======================================================================
+  U1_reciente    CZ final esperada  25.00  obtenida  25.00  [OK]
+  U1b_20dias     CZ final esperada  90.00  obtenida  90.00  [OK]
+  U2_45dias      CZ final esperada  35.00  obtenida  35.00  [OK]
+  U2b_50dias     CZ final esperada  40.00  obtenida  40.00  [OK]
+  U3_80dias      CZ final esperada  30.00  obtenida  30.00  [OK]
+  U4_150dias     CZ final esperada  20.00  obtenida  20.00  [OK]
+  U5_300dias     CZ final esperada   0.00  obtenida   0.00  [OK]
+  U6_400dias     CZ final esperada   0.00  obtenida   0.00  [OK]
+
+  Filtro de ruido sobre U7: OK (con filtro=10.0, sin filtro=4.5)
+
+>>> RESULTADO: TODOS LOS TRAMOS CORRECTOS

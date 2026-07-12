@@ -1,0 +1,3 @@
+[Ejecutado 2026-07-02 17:55:38 | vm | Python 3.12.3]
+
+Motor de Decaimiento: todos los tramos OK
