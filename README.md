@@ -164,6 +164,6 @@ pueden variar ligeramente (±0,01) con otras versiones de scikit-learn/xgboost.
   decaimiento aplicado). Es una elección conservadora: sin decaimiento (cz_raw), el
   uplift ascendería a +74,3 % frente al +70,3 % de referencia (ver `abtest_robustez.py`).
   Documentado en la sección 4.2.8 de la memoria.
-- **Dos definiciones de ARPU**: el ARPU histórico del dataset (48,07 \$) describe los
-  datos de partida; el ARPU simulado (64,8 / 110,2 \$) cuantifica el resultado del
+- **Dos definiciones de ARPU**: el ARPU histórico del dataset (48,07 dólares) describe los
+  datos de partida; el ARPU simulado (64,8 / 110,2 dólares) cuantifica el resultado del
   experimento A/B. Son magnitudes distintas, no contradictorias.
