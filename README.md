@@ -86,7 +86,7 @@ confirma que emplear cz_final en el resultado principal es la opción conservado
 - `abtest_v4_sensibilidad_ruido.csv` — Resultados del A/B por nivel de error.
 - `abtest_robustez.csv` — Resultados de las dos pruebas de robustez (catálogo común
   +32,4%; check cz_raw +74,3%), generado por `abtest_robustez.py`.
-- `resultado_por_tier_v4.csv` — Desglose de ARPU por tier (±25 %, media de las 40
+- `resultado_por_tier_v4.csv` — Desglose de ARPU por tier (±25%, media de las 40
   réplicas). Generado por `04_pricing_simulacion/generar_csv_dashboard.py`.
 - `pbi_strategy_long_v2.csv` — Datos para Power BI: ingreso esperado por jugador y
   estrategia (estático vs dinámico), con los 7 tiers de LTV. Generado por
