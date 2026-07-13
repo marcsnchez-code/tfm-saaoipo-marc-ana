@@ -1,4 +1,4 @@
-# SAAOIPO — Paquete de entregables (versión final)
+# SAAOIPO — Paquete de entregables
 
 **Sistema Analítico Aplicado a la Optimización de Ingresos en Póker Online**
 TFM — Máster en Business Analytics, Universidad Europea de Madrid
